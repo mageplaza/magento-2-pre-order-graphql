@@ -80,7 +80,7 @@ class OrderNotification implements ResolverInterface
         $orderId = $value['id'];
         if (isset($orderId) && $orderId) {
             $order = $this->orderRepository->get((int)$orderId);
-            if ($this->helperData->isApplicableOrder($order) ||
+            if ($this->helperData->isApplicableOrder($order) &&
                 in_array('frontend', $this->helperData->getOrderNoticePage($order->getStoreId()), true)) {
                 return $this->helperData->getOrderNotice($order->getStoreId());
             }
