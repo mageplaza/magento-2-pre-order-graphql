@@ -1,0 +1,23 @@
+
+type Query {
+    MpPreOrderCheckoutNotice(cart_id: String!): String @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Cart\\CheckoutNotice") @doc(description: "show notice if cart has preorder product")
+}
+
+type CustomerOrder {
+    mp_pre_order_notice: String @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Order\\OrderNotification") @doc(description: "show notice if order has preorder product on order view")
+}
+
+interface CartItemInterface {
+    mp_pre_order_message: String @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Cart\\Item") @doc(description: "show pre order message of cart item")
+}
+
+interface ProductInterface {
+    mp_pre_order: PreOrderProductData @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Product\\PreOrder") @doc(description: "show pre order information of product")
+}
+
+type PreOrderProductData {
+    stock_notice: String  @doc(description: "Stock Notice")
+    button_label: String  @doc(description: "Button Label")
+    children: String  @doc(description: "Children")
+    option_map: String  @doc(description: "Option Map")
+}
