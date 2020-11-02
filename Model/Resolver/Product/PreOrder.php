@@ -55,7 +55,7 @@ class PreOrder implements ResolverInterface
     protected $getCustomer;
 
     /**
-     * OrderNotification constructor.
+     * PreOrder constructor.
      *
      * @param Data $helperData
      * @param PreOrderRepositoryInterface $preOrderRepository

@@ -41,7 +41,7 @@ abstract class AbstractCart implements ResolverInterface
     protected $helperItem;
 
     /**
-     * CheckoutNotice constructor.
+     * AbstractCart constructor.
      *
      * @param HelperItem $helperItem
      */

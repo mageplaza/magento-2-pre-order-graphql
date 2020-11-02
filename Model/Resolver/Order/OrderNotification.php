@@ -73,7 +73,7 @@ class OrderNotification implements ResolverInterface
         /** @var ContextInterface $context */
         if ($this->helperData->versionCompare('2.3.3')) {
             if ($context->getExtensionAttributes()->getIsCustomer() === false) {
-                throw new GraphQlAuthorizationException(__('The current customer isn\'t authorized.'));
+                return null;
             }
         }
 
