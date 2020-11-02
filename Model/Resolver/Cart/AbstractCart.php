@@ -23,33 +23,32 @@ declare(strict_types=1);
 
 namespace Mageplaza\PreOrderGraphQl\Model\Resolver\Cart;
 
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Mageplaza\PreOrder\Helper\Item as HelperItem;
-use Mageplaza\PreOrder\Api\PreOrderRepositoryInterfaceFactory;
+use Magento\Framework\GraphQl\Query\ResolverInterface;
 
 /**
- * Class CheckoutNotice
+ * Class AbstractCart
  * @package Mageplaza\PreOrderGraphQl\Model\Resolver\Cart
  */
-class CheckoutNotice extends AbstractCart
+abstract class AbstractCart implements ResolverInterface
 {
     /**
-     * @var PreOrderRepositoryInterfaceFactory
+     * @var HelperItem
      */
-    protected $preOrderRepository;
+    protected $helperItem;
 
     /**
      * CheckoutNotice constructor.
      *
      * @param HelperItem $helperItem
-     * @param PreOrderRepositoryInterfaceFactory $preOrderRepository
      */
-    public function __construct(HelperItem $helperItem, PreOrderRepositoryInterfaceFactory $preOrderRepository)
-    {
-        $this->preOrderRepository = $preOrderRepository;
-
-        parent::__construct($helperItem);
+    public function __construct(
+        HelperItem $helperItem
+    ) {
+        $this->helperItem   = $helperItem;
     }
 
     /**
@@ -57,8 +56,12 @@ class CheckoutNotice extends AbstractCart
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
-        $quote = $value['model'];
+        if (!$this->helperItem->isEnabled()) {
+            return null;
+        }
 
-        return $this->preOrderRepository->create()->getNotification($quote->getId());
+        if (!isset($value['model'])) {
+            throw new LocalizedException(__('"model" value should be specified'));
+        }
     }
 }

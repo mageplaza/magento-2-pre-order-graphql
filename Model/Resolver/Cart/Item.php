@@ -23,42 +23,34 @@ declare(strict_types=1);
 
 namespace Mageplaza\PreOrderGraphQl\Model\Resolver\Cart;
 
-use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\GraphQl\Config\Element\Field;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\QuoteFactory;
 use Mageplaza\PreOrder\Helper\Item as HelperItem;
-use Magento\Framework\GraphQl\Query\ResolverInterface;
 
 /**
  * Class Item
  * @package Mageplaza\PreOrderGraphQl\Model\Resolver\Cart
  */
-class Item implements ResolverInterface
+class Item extends AbstractCart
 {
     /**
      * @var QuoteFactory
      */
-    protected $quoteFactory;
+    private $quoteFactory;
 
     /**
-     * @var HelperItem
-     */
-    protected $helperItem;
-
-    /**
-     * CheckoutNotice constructor.
+     * Item constructor.
      *
-     * @param QuoteFactory $quoteFactory
      * @param HelperItem $helperItem
+     * @param QuoteFactory $quoteFactory
      */
-    public function __construct(
-        QuoteFactory $quoteFactory,
-        HelperItem $helperItem
-    ) {
+    public function __construct(HelperItem $helperItem, QuoteFactory $quoteFactory)
+    {
         $this->quoteFactory = $quoteFactory;
-        $this->helperItem   = $helperItem;
+
+        parent::__construct($helperItem);
     }
 
     /**
@@ -66,14 +58,6 @@ class Item implements ResolverInterface
      */
     public function resolve(Field $field, $context, ResolveInfo $info, array $value = null, array $args = null)
     {
-        if (!$this->helperItem->isEnabled()) {
-            return null;
-        }
-
-        if (!isset($value['model'])) {
-            throw new LocalizedException(__('"model" value should be specified'));
-        }
-
         $item = $value['model'];
         /** @var Quote $quote */
         $quote = $this->quoteFactory->create()->load($item->getQuoteId());

@@ -1,6 +1,6 @@
 
-type Query {
-    MpPreOrderCheckoutNotice(cart_id: String!): String @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Cart\\CheckoutNotice") @doc(description: "show notice if cart has preorder product")
+type Cart {
+    mp_pre_order_notice: String @resolver(class: "\\Mageplaza\\PreOrderGraphQl\\Model\\Resolver\\Cart\\CheckoutNotice") @doc(description: "show notice if cart has preorder product")
 }
 
 type CustomerOrder {
