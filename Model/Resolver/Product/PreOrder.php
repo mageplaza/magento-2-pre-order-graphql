@@ -98,7 +98,7 @@ class PreOrder implements ResolverInterface
     /**
      * @param Product|ProductInterface $product
      *
-     * @return array
+     * @return void|array
      */
     private function getPreOrderProductData($product)
     {
