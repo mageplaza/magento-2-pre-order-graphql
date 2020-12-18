@@ -1,6 +1,22 @@
 # Magento 2 Pre Order GraphQL/PWA
 
-Magento 2 Pre Order GraphQL is a part of Pre Order extension that add GraphQL features, this support for PWA Studio.
+**Magento Pre Order GrapgQL is now a part of Mageplaza Pre Order extension that adds GraphQL features; this supports PWA studio.**
+
+Mageplaza Pre Order for Magento 2 enables the pre-order functionality, which is a must-have for any online store. Customers can place an order in advance before the products are restocked or officially released. This brings many benefits to both customers and store owners. 
+
+As a store admin, you can configure to apply pre-order to any product without limitation. The product types include simple products, group products, configurable products, and bundle products. 
+
+From the admin backend, you can also select the conditions to apply pre-order for products, especially based on the product quantity: 
+If the product is out of stock: the quantity is zero. 
+If the product is upcoming: the quantity is zero. 
+If the product quantity is smaller than the customers’ demand
+
+The extension will detect and sort out the products that match the conditions and automatically enables the pre-order button for those products.  
+
+Customers will also want to know about the status of the products they are going to purchase. So it’s necessary to announce to them the quantity of the products and your solution for that. Therefore, Magento 2 Pre Order extension includes the notification feature. When customers browse through your products and place an order on out-of-stock or upcoming products, the pre-order notification will pop out. Customers will know that they can pre-order the items and will more likely to continue the purchase instead of leaving your store. 
+
+In another case, if the available quantity doesn’t satisfy customers’ demand, there will be a notification about the remaining items. You can display the pre-order notifications on different pages, such as category page, product page, shopping cart page, checkout page, admin order page, frontend view order page, or admin view order page. 
+
 ## 1. How to install
 
 Run the following command in Magento 2 root folder:
