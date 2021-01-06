@@ -1,4 +1,4 @@
-# Magento 2 Pre Order GraphQL/PWA
+# Magento 2 Pre Order GraphQL
 
 **Magento Pre Order GraphQL is now a part of Mageplaza Pre Order extension that adds GraphQL features; this supports PWA Studio.**
 
